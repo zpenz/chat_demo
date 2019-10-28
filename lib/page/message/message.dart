@@ -12,32 +12,24 @@ class _MessagePageState extends State<MessagePage> {
     return Column(
       children: <Widget>[
         Topbar(
-            title: "TopBar",
+            title: "chat",
             decroate: TopbarDecroate(
-                suffix: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Icon(Icons.add),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                ),
-                color: Colors.white,
-                leading: Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Icon(Icons.description),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Icon(Icons.description),
-                  ],
-                )))
+              align: TextAlign.start,
+              suffix: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Icon(Icons.add),
+                  SizedBox(
+                    width: 10,
+                  ),
+                ],
+              ),
+            )),
+        Row(
+          children: <Widget>[Expanded(child: TextField())],
+        )
       ],
     );
   }

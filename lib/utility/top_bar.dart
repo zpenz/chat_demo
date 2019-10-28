@@ -6,8 +6,9 @@ class TopbarDecroate {
   final Widget leading;
   final Color color;
   final Color forceColor;
+  final TextAlign align;
   const TopbarDecroate(
-      {this.leading, this.suffix, this.color, this.forceColor});
+      {this.leading, this.suffix, this.color=Colors.white, this.forceColor=Colors.black,this.align=TextAlign.center});
 }
 
 class Topbar extends StatelessWidget {
@@ -16,14 +17,16 @@ class Topbar extends StatelessWidget {
   Topbar({@required this.title, this.decroate = topbarDefalutDecroate});
   @override
   Widget build(BuildContext context) {
+    double right = decroate.suffix==null?20:40;
+    double left  = decroate.leading==null?20:40;
+    EdgeInsets margin = EdgeInsets.fromLTRB(left, 15, right, 15);
+    
     return Container(
         color: decroate.color,
         child: Stack(children: <Widget>[
-          // SizedBox(
-          //   height: 40,
-          // ),
           Container(
-            margin: const EdgeInsets.fromLTRB(40, 15, 40, 15),
+            // margin: const EdgeInsets.fromLTRB(40, 15, 40, 15),
+            margin: margin,
             child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +34,7 @@ class Topbar extends StatelessWidget {
                   Expanded(
                       child: Text(
                     title,
-                    textAlign: TextAlign.center,
+                    textAlign: decroate.align,
                     style: TextStyle(fontSize: 20, color: decroate.forceColor),
                   )),
                 ]),

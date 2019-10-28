@@ -57,7 +57,7 @@ String gDownloadPath = "";
 
 //Setting Menu Decroate
 // const menuDefalutDecroate = SettingInfoMenuMenuDecroate();
-const topbarDefalutDecroate = TopbarDecroate(color: Colors.white,forceColor: Colors.black);
+const topbarDefalutDecroate = TopbarDecroate();
 
 closedialog(context) {
   Navigator.of(context, rootNavigator: true).pop();
