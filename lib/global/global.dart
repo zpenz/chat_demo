@@ -25,6 +25,11 @@ class KeyValue<K, V> {
 }
 
 const int server_start = 1;
+const double hPadding = 20;
+
+const double gChatMargin = 10;
+const double gChatUnderlineHeight = 1;
+const Color  gChatUnderlineColor = gColor.lightGray;
 
 String gAddress = "";
 String gAccount = "";

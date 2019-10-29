@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:abc/global/global.dart';
 import 'package:abc/page/communication/communication.dart';
 import 'package:abc/page/message/message.dart';
@@ -5,6 +6,7 @@ import 'package:abc/page/mypage/mypage.dart';
 import 'package:abc/ui/item/bottom_item.dart';
 import 'package:abc/ui/item/count_adapter.dart';
 import 'package:abc/ui/screen.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -13,6 +15,18 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // (() async {
+    //   Dio dio = new Dio();
+    //   //http://192.168.10.35:5588/login/php/szp.php
+    // FormData form = new FormData.fromMap({
+    // 'name': 'Just testing',
+    // 'passwd': '123'
+    // });
+    //   var ret = await dio.post("http://szp123.asuscomm.com:5001/1.php",
+    //       data: form);
+    //   print("-------------date:${ret.data}");
+    // })();
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -31,7 +45,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 1;
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,18 +66,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Icon(Icons.chat),
                     leftTopWidget: CountAdapter(10))),
             BottomNavigationBarItem(
-                title: Text("通讯录"), icon: Icon(Icons.settings)),
+                title: Text("通讯录"), icon: Icon(Icons.account_box)),
             BottomNavigationBarItem(
                 title: Text("我的"), icon: Icon(Icons.settings))
           ],
         ),
         body: Column(
           children: <Widget>[
-            Screen.topSafeWidget(color:Colors.white),
+            Screen.topSafeWidget(color: Colors.white),
+            Expanded(child: 
             IndexedStack(
               index: _currentIndex,
               children: <Widget>[MessagePage(), Communication(), MyPage()],
             ),
+            )
           ],
         ));
   }

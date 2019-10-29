@@ -17,8 +17,8 @@ class Topbar extends StatelessWidget {
   Topbar({@required this.title, this.decroate = topbarDefalutDecroate});
   @override
   Widget build(BuildContext context) {
-    double right = decroate.suffix==null?20:40;
-    double left  = decroate.leading==null?20:40;
+    double right = decroate.suffix==null?hPadding:40;
+    double left  = decroate.leading==null?hPadding:40;
     EdgeInsets margin = EdgeInsets.fromLTRB(left, 15, right, 15);
     
     return Container(
