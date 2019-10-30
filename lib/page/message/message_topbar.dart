@@ -1,4 +1,5 @@
 import 'package:abc/global/global.dart';
+import 'package:abc/ui/search/search_bar.dart';
 import 'package:abc/utility/top_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,8 @@ class MessageTopBar extends StatefulWidget {
 class _MessageTopBarState extends State<MessageTopBar> {
   @override
   Widget build(BuildContext context) {
-    return Column(children:[Topbar(
+    return Column(children: [
+      Topbar(
           title: "chat",
           decroate: TopbarDecroate(
             align: TextAlign.start,
@@ -26,42 +28,9 @@ class _MessageTopBarState extends State<MessageTopBar> {
               ],
             ),
           )),
-      Stack(
-        children: <Widget>[
-          Row(children: [
-            SizedBox(width: hPadding,),
-            Expanded(
-                child: TextField(
-              decoration: InputDecoration(
-                  fillColor: gColor.lightGray,
-                  focusColor: gColor.lightGray,
-                  filled: true,
-                  border: InputBorder.none
-                  ),
-            )),
-            SizedBox(width: hPadding,)
-          ]),
-          Positioned(
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon( 
-                    Icons.search,
-                    color: Colors.grey,
-                  ),
-                  Text(
-                    "搜索",
-                    style: TextStyle(color: Colors.grey),
-                  )
-                ],
-              )),
-          // ],
-          // ),
-        ],
-      )]);
+      SizedBox(height: 10,),
+      SearchBar(),
+      SizedBox(height: 10,)
+    ]);
   }
 }

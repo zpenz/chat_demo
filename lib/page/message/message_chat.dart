@@ -62,13 +62,17 @@ class _ChatState extends State<MessageChat> {
         ret.add(
             Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
           SizedBox(
-            width: 8,
+            width: 5,
+          ),
+          CircleAvatar(backgroundColor: Colors.blue,),
+          SizedBox(
+            width: 5,
           ),
           Container(
               padding: EdgeInsets.fromLTRB(gHpao,gVpao,gHpao,gVpao),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(topRight: Radius.circular(5),bottomRight: Radius.circular(5),bottomLeft: Radius.circular(5)),
-                  color: Colors.grey,
+                  color: gColor.lightGray,
                   // image: 
                   // DecorationImage(
                   //     image: ExactAssetImage("images/left_pao.jpg"),
@@ -116,7 +120,11 @@ class _ChatState extends State<MessageChat> {
                 ),
               )),
           SizedBox(
-            width: 8,
+            width: 5,
+          ),
+          CircleAvatar(backgroundColor: gColor.lightGray,),
+          SizedBox(
+            width: 5,
           )
         ]));
       }

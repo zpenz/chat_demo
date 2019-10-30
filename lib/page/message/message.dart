@@ -10,10 +10,14 @@ class MessagePage extends StatefulWidget {
 class _MessagePageState extends State<MessagePage> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
+    return Container(
+        color: Colors.white,
+        child: Column(children: <Widget>[
       MessageTopBar(),
-      Expanded(child:MessageContent()),
-      SizedBox(height: 1,)
-    ]);
+      Expanded(child: MessageContent()),
+      SizedBox(
+        height: 1,
+      )
+    ]));
   }
 }
