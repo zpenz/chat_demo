@@ -8,6 +8,7 @@ class CommonItemDecroate {
   final double hMargin;
   //margin of verital
   final double vMargin;
+  final Color backgroundColor;
   final Color underlineColor;
   final double underlineHeight;
   final double underlineLeftPadding;
@@ -16,6 +17,7 @@ class CommonItemDecroate {
       this.center,
       this.right,
       this.underlineHeight = 1,
+      this.backgroundColor = Colors.transparent,
       this.underlineColor = gColor.lightGray,
       this.underlineLeftPadding = 60,
       this.hMargin = 10,
@@ -34,6 +36,7 @@ class _CommonItemState extends State<CommonItem> {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       Container(
+        color: widget.decroate.backgroundColor,
         padding: EdgeInsets.symmetric(vertical: widget.decroate.vMargin),
         child: Row(
           children: <Widget>[
