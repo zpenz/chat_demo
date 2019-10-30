@@ -1,4 +1,6 @@
+import 'package:abc/global/global.dart';
 import 'package:abc/ui/screen.dart';
+import 'package:abc/utility/top_bar.dart';
 import 'package:flutter/material.dart';
 
 var mapList = [
@@ -11,6 +13,9 @@ var mapList = [
   {"text": "你好3", "identity": 0},
   {"text": "你好4", "identity": 1},
 ];
+
+const gVpao = 10.0;
+const gHpao = 16.0;
 
 class MessageChat extends StatefulWidget {
   final ScrollController col = ScrollController();
@@ -38,11 +43,13 @@ class _ChatState extends State<MessageChat> {
         ),
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-            hintText: '请输入...',
             filled: true,
             fillColor: Colors.white,
+            enabledBorder: null,
+            focusColor: Colors.transparent,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(20.0),
             )),
       ),
     );
@@ -58,14 +65,16 @@ class _ChatState extends State<MessageChat> {
             width: 8,
           ),
           Container(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.fromLTRB(gHpao,gVpao,gHpao,gVpao),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(0),
-                  // color: Colors.transparent,
-                  color: Colors.transparent,
-                  image: DecorationImage(
-                      image: ExactAssetImage("images/left_pao.jpg"),
-                      fit: BoxFit.fill)),
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(5),bottomRight: Radius.circular(5),bottomLeft: Radius.circular(5)),
+                  color: Colors.grey,
+                  // image: 
+                  // DecorationImage(
+                  //     image: ExactAssetImage("images/left_pao.jpg"),
+                  //     fit: BoxFit.fill
+                  //     )
+                 ),
               child: Container(
                 child: Text(
                   item['text'],
@@ -87,13 +96,15 @@ class _ChatState extends State<MessageChat> {
             child: SizedBox(),
           ),
           Container(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.fromLTRB(gHpao,gVpao,gHpao,gVpao),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(0),
-                  color: Colors.transparent,
-                  image: DecorationImage(
-                      image: ExactAssetImage("images/right_pao.png"),
-                      fit: BoxFit.fill)),
+                  border: Border(right: BorderSide.none),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(5),bottomRight: Radius.circular(5),bottomLeft: Radius.circular(5)),
+                  color: Colors.blueAccent[100],
+                  // image: DecorationImage(
+                  //     image: ExactAssetImage("images/right_pao.png"),
+                  //     fit: BoxFit.fill)
+                      ),
               child: Container(
                 child: Text(
                   item['text'],
@@ -109,7 +120,6 @@ class _ChatState extends State<MessageChat> {
           )
         ]));
       }
-
       ret.add(SizedBox(
         height: 10,
       ));
@@ -122,35 +132,21 @@ class _ChatState extends State<MessageChat> {
     return Scaffold(
         body: Column(
       children: <Widget>[
-        Screen.topSafeWidget(),
+        Screen.topSafeWidget(color: Colors.white),
+        Topbar(
+          title: "Title",
+          decroate: TopbarDecroate(
+              leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.grey[900],
+            ),
+          ),suffix: IconButton(onPressed: (){},icon: Icon(Icons.more_horiz,color: Colors.grey[900]))),
+        ),
         Container(
-          color: Colors.black,
-          height: 40,
-          child: Row(
-            children: <Widget>[
-              SizedBox(width: 10),
-              Icon(
-                Icons.chevron_left,
-                color: Colors.white,
-              ),
-              Text(
-                '微信',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-              Expanded(
-                  child: Center(
-                child: Text(
-                  "联系人",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-              )),
-              Icon(
-                Icons.people,
-                color: Colors.white,
-              ),
-              SizedBox(width: 10)
-            ],
-          ),
+          height: gChatUnderlineHeight,
+          color: gChatUnderlineColor,
         ),
         Expanded(
           child: Container(
@@ -158,10 +154,11 @@ class _ChatState extends State<MessageChat> {
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
-                Image.asset(
-                  "images/bk.jpg",
-                  fit: BoxFit.cover,
-                ),
+                //background
+                // Image.asset(
+                //   "images/bk.jpg",
+                //   fit: BoxFit.cover,
+                // ),
                 ListView(
                   controller: widget.col,
                   children: writeList(),
@@ -175,27 +172,34 @@ class _ChatState extends State<MessageChat> {
           height: 54,
           child: Row(
             children: <Widget>[
-              SizedBox(width: 5),
-              Icon(
-                Icons.rss_feed,
-                color: Color.fromRGBO(127, 132, 135, 1),
-                size: 34,
-              ),
-              SizedBox(width: 5),
+              SizedBox(width: 8),
+              Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.black, width: 2.5)),
+                  child: Icon(
+                    Icons.keyboard_voice,
+                    // color: Color.fromRGBO(127, 132, 135, 1),
+                    color: Colors.grey[900],
+                    size: 25,
+                  )),
+              SizedBox(width: 8),
               Expanded(
                 child: buildTextField(),
               ),
               SizedBox(width: 5),
               Icon(
                 Icons.mood,
-                color: Color.fromRGBO(127, 132, 135, 1),
-                size: 34,
+                color: Colors.grey[900],
+                // color: Color.fromRGBO(127, 132, 135, 1),
+                size: 35,
               ),
               SizedBox(width: 5),
               Icon(
                 Icons.control_point,
-                color: Color.fromRGBO(127, 132, 135, 1),
-                size: 34,
+                color: Colors.grey[900],
+                // color: Color.fromRGBO(127, 132, 135, 1),
+                size: 35,
               ),
               SizedBox(width: 5)
             ],
