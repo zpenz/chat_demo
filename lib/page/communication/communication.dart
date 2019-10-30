@@ -1,3 +1,4 @@
+import 'package:abc/page/communication/communication_content.dart';
 import 'package:abc/page/communication/communication_topbar.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class _CommunicationState extends State<Communication> {
         child: Container(
             color: Colors.white,
             child: Column(
-      children: <Widget>[CommunicationTopBar()],
-    )));
+              children: <Widget>[CommunicationTopBar(), Expanded(child:CommunicationContent())],
+            )));
   }
 }
