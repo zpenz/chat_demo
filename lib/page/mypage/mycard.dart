@@ -16,8 +16,8 @@ class _MyCardState extends State<MyCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.white54,
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+        color: Colors.grey[50],
+        padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
         child: Card(
           margin: EdgeInsets.all(0),
           child: Column(

@@ -11,7 +11,7 @@ class _MyState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.,
+      color: Colors.grey[300],
       child: Column(
         children: <Widget>[
           MyCard(

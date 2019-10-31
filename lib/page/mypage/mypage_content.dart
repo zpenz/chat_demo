@@ -1,3 +1,4 @@
+import 'package:abc/global/global.dart';
 import 'package:abc/ui/item/bottom_item.dart';
 import 'package:abc/ui/item/common_item.dart';
 import 'package:flutter/material.dart';
@@ -10,41 +11,43 @@ class MyPageContent extends StatefulWidget {
 class _MyPageContentState extends State<MyPageContent> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.all(0),
+    return Column(
       children: <Widget>[
-        Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  BottomItem(
-                    text: "我的客服",
-                    child: Icon(Icons.people),
-                  ),
-                  BottomItem(
-                    text: "学习中心",
-                    child: Icon(Icons.center_focus_weak),
-                  ),
-                  BottomItem(
-                    text: "福利社",
-                    child: Icon(Icons.present_to_all),
-                  )
-                ],
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              BottomItem(
+                text: "我的客服",
+                child: Icon(Icons.people),
               ),
-            ),
-            //按钮列
+              BottomItem(
+                text: "学习中心",
+                child: Icon(Icons.center_focus_weak),
+              ),
+              BottomItem(
+                text: "福利社",
+                child: Icon(Icons.present_to_all),
+              )
+            ],
+          ),
+        ),
+        //按钮列
+        Expanded(
+            child: ListView(
+          padding: EdgeInsets.all(0),
+          children: <Widget>[
             buildButton(context),
           ],
-        ),
+        )),
       ],
     );
   }
 
   Widget buildButton(BuildContext context) {
+    var hPadding = 15.0;
     return Column(
       children: <Widget>[
         SizedBox(
@@ -52,6 +55,7 @@ class _MyPageContentState extends State<MyPageContent> {
         ),
         CommonItem(
           decroate: CommonItemDecroate(
+              vMargin: hPadding,
               backgroundColor: Colors.white,
               underlineColor: Colors.transparent,
               left: Icon(Icons.attach_money),
@@ -74,6 +78,7 @@ class _MyPageContentState extends State<MyPageContent> {
         ),
         CommonItem(
           decroate: CommonItemDecroate(
+            vMargin: hPadding,
             backgroundColor: Colors.white,
             left: Icon(Icons.local_see),
             underlineLeftPadding: 45,
@@ -86,6 +91,7 @@ class _MyPageContentState extends State<MyPageContent> {
         ),
         CommonItem(
           decroate: CommonItemDecroate(
+            vMargin: hPadding,
             backgroundColor: Colors.white,
             left: Icon(Icons.store),
             underlineLeftPadding: 45,
@@ -98,6 +104,7 @@ class _MyPageContentState extends State<MyPageContent> {
         ),
         CommonItem(
           decroate: CommonItemDecroate(
+            vMargin: hPadding,
             backgroundColor: Colors.white,
             left: Icon(Icons.account_box),
             underlineLeftPadding: 45,
@@ -114,6 +121,7 @@ class _MyPageContentState extends State<MyPageContent> {
         ),
         CommonItem(
           decroate: CommonItemDecroate(
+            vMargin: hPadding,
             backgroundColor: Colors.white,
             left: Icon(Icons.settings),
             underlineLeftPadding: 45,
@@ -130,6 +138,7 @@ class _MyPageContentState extends State<MyPageContent> {
         ),
         CommonItem(
           decroate: CommonItemDecroate(
+            vMargin: hPadding,
             backgroundColor: Colors.white,
             left: Icon(Icons.photo_size_select_small),
             underlineLeftPadding: 45,
