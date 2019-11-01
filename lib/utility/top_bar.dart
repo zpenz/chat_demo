@@ -7,8 +7,19 @@ class TopbarDecroate {
   final Color color;
   final Color forceColor;
   final TextAlign align;
+  final double hPadding;
+  //when no suffix / leading use hNoSubWidgetPadding width
+  final double hNoSubWidgetPadding;
+  final double vPadding;
   const TopbarDecroate(
-      {this.leading, this.suffix, this.color=Colors.white, this.forceColor=Colors.black,this.align=TextAlign.center});
+      {this.leading,
+      this.suffix,
+      this.color = Colors.white,
+      this.hPadding = 20,
+      this.hNoSubWidgetPadding = 40,
+      this.vPadding = 15,
+      this.forceColor = Colors.black,
+      this.align = TextAlign.center});
 }
 
 class Topbar extends StatelessWidget {
@@ -17,10 +28,15 @@ class Topbar extends StatelessWidget {
   Topbar({@required this.title, this.decroate = topbarDefalutDecroate});
   @override
   Widget build(BuildContext context) {
-    double right = decroate.suffix==null?hPadding:40;
-    double left  = decroate.leading==null?hPadding:40;
-    EdgeInsets margin = EdgeInsets.fromLTRB(left, 15, right, 15);
-    
+    double right = decroate.suffix == null
+        ? decroate.hPadding
+        : decroate.hNoSubWidgetPadding;
+    double left = decroate.leading == null
+        ? decroate.hPadding
+        : decroate.hNoSubWidgetPadding;
+    EdgeInsets margin =
+        EdgeInsets.fromLTRB(left, decroate.vPadding, right, decroate.vPadding);
+
     return Container(
         color: decroate.color,
         child: Stack(children: <Widget>[

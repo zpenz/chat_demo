@@ -1,20 +1,35 @@
-import 'dart:convert';
+import 'dart:io';
+
 import 'package:abc/global/global.dart';
 import 'package:abc/page/communication/communication.dart';
 import 'package:abc/page/message/message.dart';
 import 'package:abc/page/mypage/mypage.dart';
+import 'package:abc/page/readpage/readpage.dart';
 import 'package:abc/ui/item/bottom_item.dart';
 import 'package:abc/ui/item/count_adapter.dart';
 import 'package:abc/ui/screen.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main(){
+  //  if (Platform.isAndroid) {
+  //       // SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+  //       //     statusBarColor: color, statusBarIconBrightness: Brightness.dark);
+  //       // SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor:Colors.black);
+  //       // SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  //       // SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+  //     SystemChrome.setEnabledSystemUIOverlays([]);
+  //   }
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays([]);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     // (() async {
     //   Dio dio = new Dio();
     //   //http://192.168.10.35:5588/login/php/szp.php
@@ -68,17 +83,28 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(
                 title: Text("通讯录"), icon: Icon(Icons.account_box)),
             BottomNavigationBarItem(
-                title: Text("我的"), icon: Icon(Icons.settings))
+              title: Text("我的"),
+              icon: Icon(Icons.settings),
+            ),
+            BottomNavigationBarItem(
+              title: Text("book"),
+              icon: Icon(Icons.book),
+            )
           ],
         ),
         body: Column(
           children: <Widget>[
             Screen.topSafeWidget(color: Colors.white),
-            Expanded(child: 
-            IndexedStack(
-              index: _currentIndex,
-              children: <Widget>[MessagePage(), Communication(), MyPage()],
-            ),
+            Expanded(
+              child: IndexedStack(
+                index: _currentIndex,
+                children: <Widget>[
+                  MessagePage(),
+                  Communication(),
+                  MyPage(),
+                  ReadPage()
+                ],
+              ),
             )
           ],
         ));

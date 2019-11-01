@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 class BottomItem extends StatefulWidget {
   final String text;
+  final Color forceColor;
   final Widget child;
   final Widget leftTopWidget;
   final OnDoCallback<_BottomItemState> onPress;
 
-  BottomItem({this.text, this.child, this.leftTopWidget, this.onPress});
+  BottomItem({this.text, this.child, this.leftTopWidget, this.onPress,this.forceColor=Colors.black});
   @override
   _BottomItemState createState() => _BottomItemState();
 }
@@ -33,7 +34,7 @@ class _BottomItemState extends State<BottomItem> {
                     ),
                     Offstage(
                         offstage: widget.child == null, child: widget.child),
-                    Text(widget.text)
+                    Text(widget.text,style: TextStyle(color: widget.forceColor),)
                   ])),
             ),
             Positioned(
