@@ -12,44 +12,43 @@ class _ReadPageBottomState extends State<ReadPageBottom> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
-      margin: EdgeInsets.symmetric(vertical: 10),
+      color: gColor.golden,
+      padding: EdgeInsets.symmetric(vertical: 10),
       child: Column(children: <Widget>[
-        Row(children: <Widget>[
           CommonItem(decroate: CommonItemDecroate(
             left: Text("上一章",style: TextStyle(color: gColor.lightGray),),
-            center: Expanded(child:SizedBox()),
-            right: Text("下一章",style: TextStyle(color: gColor.lightGray))
-          ),)
-        ],),
+            // center: Expanded(child:SizedBox()),
+            right: Text("下一章",style: TextStyle(color: gColor.lightGray)),
+            underlineLeftPadding: 0
+          ),),
         SizedBox(height: 8,),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             BottomItem(
               forceColor: Colors.white,
               text: "目录",
-              child: Icon(Icons.reorder),
+              child: Icon(Icons.reorder,color: Colors.white,),
             ),
             BottomItem(
               forceColor: Colors.white,
               text: "选项",
-              child: Icon(Icons.format_bold),
+              child: Icon(Icons.format_bold,color: Colors.white),
             ),
             BottomItem(
               forceColor: Colors.white,
               text: "亮度",
-              child: Icon(Icons.highlight),
+              child: Icon(Icons.highlight,color: Colors.white),
             ),
             BottomItem(
               forceColor: Colors.white,
               text: "阅读模式",
-              child: Icon(Icons.record_voice_over),
+              child: Icon(Icons.record_voice_over,color: Colors.white),
             ),
             BottomItem(
               forceColor: Colors.white,
               text: "更多",
-              child: Icon(Icons.more_horiz),
+              child: Icon(Icons.more_horiz,color: Colors.white),
             ),
         ],)
       ],),

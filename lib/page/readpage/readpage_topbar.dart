@@ -1,3 +1,4 @@
+import 'package:abc/global/global.dart';
 import 'package:abc/ui/item/common_item.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class _ReadPageTopbarState extends State<ReadPageTopbar> {
   Widget build(BuildContext context) {
     return CommonItem(
       decroate: CommonItemDecroate(
-          backgroundColor: Colors.black,
+          backgroundColor: gColor.golden,
           left: IconButton(
             icon: Icon(
               Icons.arrow_back_ios,

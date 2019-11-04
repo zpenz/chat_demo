@@ -75,13 +75,13 @@ class _MyHomePageState extends State<MyHomePage> {
           inactiveColor: Colors.black,
           activeColor: gColor.themeBlue,
           items: [
-            BottomNavigationBarItem(
-                icon: BottomItem(
-                    text: "消息",
-                    child: Icon(Icons.chat),
-                    leftTopWidget: CountAdapter(10))),
-            BottomNavigationBarItem(
-                title: Text("通讯录"), icon: Icon(Icons.account_box)),
+            // BottomNavigationBarItem(
+            //     icon: BottomItem(
+            //         text: "消息",
+            //         child: Icon(Icons.chat),
+            //         leftTopWidget: CountAdapter(10))),
+            // BottomNavigationBarItem(
+            //     title: Text("通讯录"), icon: Icon(Icons.account_box)),
             BottomNavigationBarItem(
               title: Text("我的"),
               icon: Icon(Icons.settings),
@@ -99,8 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: IndexedStack(
                 index: _currentIndex,
                 children: <Widget>[
-                  MessagePage(),
-                  Communication(),
+                  // MessagePage(),
+                  // Communication(),
                   MyPage(),
                   ReadPage()
                 ],
