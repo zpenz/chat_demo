@@ -13,6 +13,13 @@ class MyCard extends StatefulWidget {
 }
 
 class _MyCardState extends State<MyCard> {
+  List<String> imageUrl = [
+    'http://szp123.asuscomm.com:5002/1.jpeg',
+    'http://szp123.asuscomm.com:5002/2.jpeg',
+    'http://szp123.asuscomm.com:5002/3.jpeg',
+  ];
+  int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,7 +60,17 @@ class _MyCardState extends State<MyCard> {
                         ),
                       ],
                     ),
-                    right: CircleAvatar(
+                    right: 
+                    GestureDetector(behavior: HitTestBehavior.opaque,
+                    onTapUp: (par){
+                      setState(() {
+                        index = index%2;
+                        index++;
+                      });
+                    },
+                    child: 
+                    CircleAvatar(
+                        backgroundImage: NetworkImage(imageUrl[index]),
                         backgroundColor: Colors.blue,
                         child: Center(
                           child: Text(
@@ -61,7 +78,9 @@ class _MyCardState extends State<MyCard> {
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
-                        ))),
+                        ))
+                       ,)
+                        ),
               ),
               SizedBox(
                 height: 50,

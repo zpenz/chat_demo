@@ -38,7 +38,8 @@ class _SearchBarState extends State<SearchBar> {
                     gapPadding: 0,
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none)),
-          )),
+          )
+          ),
           SizedBox(
             width: hPadding,
           )
