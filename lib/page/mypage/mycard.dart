@@ -60,27 +60,26 @@ class _MyCardState extends State<MyCard> {
                         ),
                       ],
                     ),
-                    right: 
-                    GestureDetector(behavior: HitTestBehavior.opaque,
-                    onTapUp: (par){
-                      setState(() {
-                        index = index%2;
-                        index++;
-                      });
-                    },
-                    child: 
-                    CircleAvatar(
-                        backgroundImage: NetworkImage(imageUrl[index]),
-                        backgroundColor: Colors.blue,
-                        child: Center(
-                          child: Text(
-                            widget.nickName.substring(0, 1),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 15),
-                          ),
-                        ))
-                       ,)
-                        ),
+                    right: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTapUp: (par) {
+                        setState(() {
+                          index = index % 2;
+                          index++;
+                        });
+                      },
+                      child: CircleAvatar(
+                          backgroundImage: NetworkImage(imageUrl[index]),
+                          backgroundColor: Colors.blue,
+                          child: Center(
+                            child: Text(
+                              widget.nickName.substring(0, 1),
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                          )),
+                    )),
               ),
               SizedBox(
                 height: 50,

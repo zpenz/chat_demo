@@ -1,3 +1,4 @@
+import 'package:abc/global/global.dart';
 import 'package:abc/page/mypage/mycard.dart';
 import 'package:abc/page/mypage/mypage_content.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _MyState extends State<MyPage> {
           MyCard(
             info1: "info1",
             info2: "info2",
-            nickName: "pSong",
+            nickName: gAccount,
           ),
           Expanded(
             child: MyPageContent(),

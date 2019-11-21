@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:abc/global/get_friend_list.dart';
 import 'package:abc/global/global.dart';
 import 'package:abc/page/communication/communication.dart';
 import 'package:abc/page/message/message.dart';
@@ -72,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -110,10 +112,6 @@ class _LoginPageState extends State<LoginPage> {
                             const EdgeInsets.fromLTRB(3, 10, 3, 10),
                         hintText: "请输入用户名",
                         focusColor: Colors.black,
-                        // border: OutlineInputBorder(
-                        //   gapPadding: 0,
-                        //   borderRadius: BorderRadius.horizontal(),
-                        // )
                         ),
                   ),
                 )
@@ -139,10 +137,6 @@ class _LoginPageState extends State<LoginPage> {
                             const EdgeInsets.fromLTRB(3, 10, 3, 10),
                         hintText: "请输入密码",
                         focusColor: Colors.black,
-                        // border: OutlineInputBorder(
-                        //   gapPadding: 0,
-                        //   borderRadius: BorderRadius.horizontal(),
-                        // )
                         ),
                   ),
                 )
@@ -160,10 +154,20 @@ class _LoginPageState extends State<LoginPage> {
                   Dio dio =new Dio();
                   var ret = await dio.get("http://szp123.asuscomm.com:5002/XkUser/login.php?account=${accountControl.text}&password=${passwordControl.text}");
                   var obj = json.decode(ret.toString());
-                  print(obj['total_count']);
+                  print(obj);
+
+                  //get friend list
+                  getFriendList(obj['user_id'], (rls){
+                    gFriendList = rls;
+                  }, (error){
+                    print(error);
+                  });
                   closedialog(context);
                   if(obj['total_count']!=0){
                     alert(context, "提示", "登录成功!");
+                    gAccount  = accountControl.text;
+                    gPassword = passwordControl.text; 
+                    gUid = obj['user_id'];
                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
                   }else{
                     alert(context, "提示", "登录失败!");

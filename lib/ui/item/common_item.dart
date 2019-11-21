@@ -26,7 +26,9 @@ class CommonItemDecroate {
 
 class CommonItem extends StatefulWidget {
   final CommonItemDecroate decroate;
-  CommonItem({this.decroate});
+  final VoidCallback onPress;
+
+  CommonItem({this.onPress, this.decroate});
   @override
   _CommonItemState createState() => _CommonItemState();
 }
@@ -34,35 +36,41 @@ class CommonItem extends StatefulWidget {
 class _CommonItemState extends State<CommonItem> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      Container(
-        color: widget.decroate.backgroundColor,
-        padding: EdgeInsets.symmetric(vertical: widget.decroate.vMargin),
-        child: Row(
-          children: <Widget>[
-            SizedBox(
-              width: widget.decroate.hMargin,
-            ),
-            Center(child:widget.decroate.left ?? Container()),
-            SizedBox(
-              width: widget.decroate.hMargin,
-            ),
-            Expanded(child: widget.decroate.center ?? Container()),
-            SizedBox(
-              width: widget.decroate.hMargin,
-            ),
-            Center(child:widget.decroate.right ?? Container()),
-            SizedBox(
-              width: widget.decroate.hMargin,
-            ),
-          ],
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTapUp: this.widget.onPress == null ? null : (param) {
+        this.widget.onPress();
+      },
+      child: Column(children: <Widget>[
+        Container(
+          color: widget.decroate.backgroundColor,
+          padding: EdgeInsets.symmetric(vertical: widget.decroate.vMargin),
+          child: Row(
+            children: <Widget>[
+              SizedBox(
+                width: widget.decroate.hMargin,
+              ),
+              Center(child: widget.decroate.left ?? Container()),
+              SizedBox(
+                width: widget.decroate.hMargin,
+              ),
+              Expanded(child: widget.decroate.center ?? Container()),
+              SizedBox(
+                width: widget.decroate.hMargin,
+              ),
+              Center(child: widget.decroate.right ?? Container()),
+              SizedBox(
+                width: widget.decroate.hMargin,
+              ),
+            ],
+          ),
         ),
-      ),
-      Container(
-        color: widget.decroate.underlineColor,
-        height: widget.decroate.underlineHeight,
-        margin: EdgeInsets.only(left: widget.decroate.underlineLeftPadding),
-      )
-    ]);
+        Container(
+          color: widget.decroate.underlineColor,
+          height: widget.decroate.underlineHeight,
+          margin: EdgeInsets.only(left: widget.decroate.underlineLeftPadding),
+        )
+      ]),
+    );
   }
 }

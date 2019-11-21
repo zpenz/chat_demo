@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:abc/model/contact_people.dart';
 import 'package:abc/utility/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -37,7 +38,7 @@ String gPassword = "";
 String gSid = "";
 int gUid = 0;
 int gPort = 0;
-
+List<ContractPeople> gFriendList =List<ContractPeople>();
 // XStack gPageStack = new XStack<FilePage>();
 
 enum gCopyKind { TYPE_NONE, TYPE_COPY, TYPE_CUT }
@@ -52,7 +53,6 @@ gTaskKind gCurrentTaskKind = gTaskKind.TASK_UPLOAD;
 // SharedPreferences gPreferences;
 Directory gDir;
 String gDownloadPath = "";
-
 
 
 //Setting Item Mehon
