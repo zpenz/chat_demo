@@ -77,7 +77,6 @@ class _SearchFriendPageState extends State<SearchFriendPage> {
                                   alert(context, "提示", "不能添加自己!");
                                   return;
                                 }
-
                                 ret = await dio.get(
                                 "http://szp123.asuscomm.com:5002/XkUser/AddFriend.php?user=$gUid&friend=${item['user_id']}");
                                 obj = json.decode(ret.toString());

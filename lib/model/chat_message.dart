@@ -1,21 +1,16 @@
 import 'package:abc/global/global.dart';
-import 'package:abc/interface/task.dart';
+import 'package:abc/model/contact_people.dart';
 import 'package:abc/model/message.dart';
 import 'package:abc/page/message/message_chat.dart';
 import 'package:abc/ui/item/count_adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class ChatMessage {
-  Widget headImg;
-  List<Message> messagePool;
-  // ChatMessage();
-  ChatMessage(this.headImg, this.messagePool);
-}
 
 class ChatMessageWidget extends StatefulWidget {
   // final ChatMessage msgs;
   // ChatMessageWidget(this.msgs);
+  
   @override
   _ChatMessageWidgetState createState() => _ChatMessageWidgetState();
 }
@@ -26,7 +21,9 @@ class _ChatMessageWidgetState extends State<ChatMessageWidget> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>MessageChat()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>MessageChat(
+          friend: ContractPeople(id: 1,name: "测试",),
+        )));
       },
       child: Column(
         children: [

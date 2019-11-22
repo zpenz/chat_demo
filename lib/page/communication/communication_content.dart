@@ -1,6 +1,7 @@
 import 'package:abc/global/get_friend_list.dart';
 import 'package:abc/global/global.dart';
 import 'package:abc/model/contact_people.dart';
+import 'package:abc/page/message/message_chat.dart';
 import 'package:abc/page/searchpage/search_friend_page.dart';
 import 'package:abc/ui/item/common_item.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,23 @@ class CommunicationContent extends StatefulWidget {
 class _CommunicationContentState extends State<CommunicationContent> {
   @override
   Widget build(BuildContext context) {
-    
     var friendList = ListView.builder(
       shrinkWrap: true,
       itemCount: gFriendList.length,
       itemBuilder: (bc, index) {
-        return gFriendList[index];
+        return ContractPeople(
+          id: gFriendList[index].id,
+          name: gFriendList[index].name,
+          onpress: (param) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MessageChat(
+                    friend: gFriendList[index],
+                  ),
+                ));
+          },
+        );
       },
     );
 
@@ -68,15 +80,6 @@ class _CommunicationContentState extends State<CommunicationContent> {
               underlineLeftPadding: 0),
         ),
         friendList,
-        // ContractPeople(
-        //   name: "用户1",
-        // ),
-        // ContractPeople(
-        //   name: "用户2",
-        // ),
-        // ContractPeople(
-        //   name: "用户3",
-        // ),
         CommonItem(
           decroate: CommonItemDecroate(
               left: Text("我的群聊"),

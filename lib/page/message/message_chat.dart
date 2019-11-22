@@ -1,29 +1,68 @@
+import 'dart:convert';
 import 'package:abc/global/global.dart';
+import 'package:abc/model/Observer.dart';
+import 'package:abc/model/chat_message_model.dart';
+import 'package:abc/model/contact_people.dart';
 import 'package:abc/ui/screen.dart';
 import 'package:abc/utility/top_bar.dart';
 import 'package:flutter/material.dart';
-
-var mapList = [
-  {"text": "你好1", "identity": 0},
-  {"text": "你好asdf", "identity": 1},
-  {"text": "你好3", "identity": 0},
-  {"text": "你好4", "identity": 1},
-  {"text": "你好3", "identity": 0},
-  {"text": "你好4", "identity": 1},
-  {"text": "你好3", "identity": 0},
-  {"text": "你好4", "identity": 1},
-];
+import 'package:web_socket_channel/io.dart';
 
 const gVpao = 10.0;
 const gHpao = 16.0;
 
+class Test extends Observer<ChatMessage>{
+  @override
+  update(ChatMessage data) {
+    // TODO: implement update
+    return null;
+  }
+}
+
+
 class MessageChat extends StatefulWidget {
-  final ScrollController col = ScrollController();
+  final ContractPeople friend;
+
+  MessageChat({this.friend});
   @override
   _ChatState createState() => _ChatState();
 }
 
-class _ChatState extends State<MessageChat> {
+class _ChatState extends State<MessageChat> with Observer<ChatMessage> {
+
+  final ScrollController col = ScrollController();
+  // IOWebSocketChannel _channel = IOWebSocketChannel.connect("ws://szp123.asuscomm.com:8081");
+  var messageList = [];
+  int flag = 0;
+
+  @override
+  update(ChatMessage data) {
+      setState(() {
+        messageList.add({"text": data.msg, "identity": this.widget.friend.id});
+      });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    MyObserver ob = new MyObserver();
+    ob.register(Test());
+    gMyObserver.register(Test());
+    // gChannel.stream.listen((message) {
+    //   print(message);
+    //   setState(() {
+    //     messageList.add({"text": message.toString(), "identity": flag.hashCode});
+    //     flag=!flag;
+    //   });
+    // });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    gChannel.sink.close();
+  }
+
   Widget buildTextField() {
     return Theme(
       data: new ThemeData(
@@ -32,9 +71,9 @@ class _ChatState extends State<MessageChat> {
       child: TextField(
         onChanged: (String str) {},
         onSubmitted: (String str) {
-          mapList.add({"text": str, "identity": 1});
+          gChannel.sink.add(json.encode({"from":gUid,"send_to":this.widget.friend.id,"msg":str}));
           setState(() {
-            widget.col.jumpTo(widget.col.position.maxScrollExtent + 50);
+            col.jumpTo(col.position.maxScrollExtent + 50);
           });
         },
         style: TextStyle(
@@ -57,7 +96,7 @@ class _ChatState extends State<MessageChat> {
 
   List<Widget> writeList() {
     var ret = <Widget>[];
-    mapList.forEach((item) {
+    messageList.forEach((item) {
       if (item['identity'] == 0) {
         ret.add(
             Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
@@ -142,7 +181,7 @@ class _ChatState extends State<MessageChat> {
       children: <Widget>[
         Screen.topSafeWidget(color: Colors.white),
         Topbar(
-          title: "Title",
+          title: this.widget.friend.name,
           decroate: TopbarDecroate(
               leading: IconButton(
             onPressed: () => Navigator.pop(context),
@@ -156,6 +195,7 @@ class _ChatState extends State<MessageChat> {
           height: gChatUnderlineHeight,
           color: gChatUnderlineColor,
         ),
+        SizedBox(height: 3,),
         Expanded(
           child: Container(
             color: Colors.white,
@@ -168,7 +208,7 @@ class _ChatState extends State<MessageChat> {
                 //   fit: BoxFit.cover,
                 // ),
                 ListView(
-                  controller: widget.col,
+                  controller: col,
                   children: writeList(),
                 ),
               ],
@@ -216,4 +256,6 @@ class _ChatState extends State<MessageChat> {
       ],
     ));
   }
+
+
 }

@@ -168,6 +168,11 @@ class _LoginPageState extends State<LoginPage> {
                     gAccount  = accountControl.text;
                     gPassword = passwordControl.text; 
                     gUid = obj['user_id'];
+
+                    //message loop
+                    gChannel.stream.listen((message){
+                      gMyObserver.changeMsg(message);
+                    });
                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
                   }else{
                     alert(context, "提示", "登录失败!");

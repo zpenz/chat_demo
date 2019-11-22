@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:abc/global/global.dart';
 import 'package:abc/ui/item/common_item.dart';
 import 'package:abc/ui/line/under_line.dart';
+import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class MyCard extends StatefulWidget {
@@ -62,7 +66,24 @@ class _MyCardState extends State<MyCard> {
                     ),
                     right: GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTapUp: (par) {
+                      onTapUp: (par) async {
+                        // var path = await FilePicker.getFilePath(
+                        //     type: Platform.isAndroid
+                        //         ? FileType.ANY
+                        //         : FileType.IMAGE);
+                        // Dio dio = new Dio();
+                        // var formData = FormData.fromMap({
+                        //   "name": "wendux",
+                        //   "age": 25,
+                        //   "file": await MultipartFile.fromFile(path,
+                        //       filename: "upload.txt"),
+                        //   // "files": [
+                        //   //   await MultipartFile.fromFile("./text1.txt", filename: "text1.txt"),
+                        //   //   await MultipartFile.fromFile("./text2.txt", filename: "text2.txt"),
+                        //   // ]
+                        // });
+                        // var response = await dio.post("http://szp123.asuscomm.com:5002/XkUser/FileTest.php", data: formData);
+                        // print(response.data.toString());
                         setState(() {
                           index = index % 2;
                           index++;
@@ -73,7 +94,7 @@ class _MyCardState extends State<MyCard> {
                           backgroundColor: Colors.blue,
                           child: Center(
                             child: Text(
-                              widget.nickName.substring(0, 1),
+                              widget.nickName.length>1?widget.nickName.substring(0, 1):"",
                               textAlign: TextAlign.center,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 15),

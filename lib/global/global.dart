@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:abc/model/contact_people.dart';
+import 'package:abc/model/observer.dart';
 import 'package:abc/utility/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:web_socket_channel/io.dart';
 
 bool glogin = false;
 
@@ -38,7 +40,9 @@ String gPassword = "";
 String gSid = "";
 int gUid = 0;
 int gPort = 0;
+
 List<ContractPeople> gFriendList =List<ContractPeople>();
+
 // XStack gPageStack = new XStack<FilePage>();
 
 enum gCopyKind { TYPE_NONE, TYPE_COPY, TYPE_CUT }
@@ -54,6 +58,9 @@ gTaskKind gCurrentTaskKind = gTaskKind.TASK_UPLOAD;
 Directory gDir;
 String gDownloadPath = "";
 
+//global 
+IOWebSocketChannel gChannel = IOWebSocketChannel.connect("ws://szp123.asuscomm.com:8081");
+MyObserver gMyObserver = new MyObserver();
 
 //Setting Item Mehon
 // const defalutMethon = SettingInfoItemBuildMethonDefalut();
